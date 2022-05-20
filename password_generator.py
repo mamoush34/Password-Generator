@@ -1,13 +1,18 @@
 import random
 import string
 import secrets
+from tkinter import *
+from tkinter import ttk
 
 
 class PasswordGenerator:
 
-    def __init__(self) -> None:
+    def __init__(self, master : Tk) -> None:
         self.pass_len = 16
         self.char_set = string.ascii_lowercase + string.ascii_uppercase + string.punctuation + string.digits
+        master.title("Password Generator")
+        self.len_entry = ttk.Entry(master, width=30)
+        self.len_entry.pack()
 
     
     def produce_random_pass(self) -> str:
@@ -20,8 +25,8 @@ class PasswordGenerator:
         return str.join("", password)
 
 if __name__ == "__main__":
-    passGen =  PasswordGenerator()
-    new_pass = passGen.produce_random_pass()
-    print(new_pass)
+    root = Tk()
+    passGen = PasswordGenerator(root)
+    root.mainloop()
 
 
